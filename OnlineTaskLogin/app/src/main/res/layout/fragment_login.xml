@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.onlinetasklogin.viewmodels.LogInSignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        tools:context=".views.LoginFragment">
+
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120sp"
+            android:fontFamily="@font/oswald_bold"
+            android:text="@string/signin"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/county_code"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/edit_text_border"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/user_name_layout"
+            app:layout_constraintTop_toBottomOf="@id/login_text" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_name_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/mobile_number"
+            app:boxStrokeColor="@color/brown_200"
+            android:textColorHint="@color/brown_200"
+            app:layout_constraintHorizontal_weight="3"
+            app:helperTextTextColor="@color/red_400"
+            app:layout_constraintLeft_toRightOf="@id/county_code"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oswald_regular"
+                android:inputType="phone"
+                android:paddingLeft="6dp"
+                android:text="@={viewmodel.userPhn}"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_edit_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textColorHint="@color/brown_200"
+            app:boxStrokeColor="@color/brown_400"
+            android:layout_marginTop="20dp"
+            app:helperTextTextColor="@color/red_400"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/county_code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/oswald_regular"
+                android:inputType="textPassword"
+                android:paddingLeft="6dp"
+                android:text="@={viewmodel.userPassword}"
+                android:textColor="@color/black" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/sign_in_click"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/indigo_800"
+            android:fontFamily="@font/oswald_bold"
+            android:text="@string/signin"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{(view) -> viewmodel.callLogin(view)}"
+            app:layout_constraintTop_toBottomOf="@+id/password_edit_layout" />
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/oswald_regular"
+            android:text="@string/forgot_password"
+            android:textColor="@color/teal_200"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_click" />
+
+        <TextView
+            android:id="@+id/no_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/oswald_regular"
+            android:text="@string/dont_have_account"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
+
+        <TextView
+            android:id="@+id/sign_up_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/oswald_bold"
+            android:text="@string/sign_up"
+            android:textColor="@color/teal_200"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{ ()-> viewmodel.callSignUpScreen()}"
+            app:layout_constraintTop_toBottomOf="@+id/no_account_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
